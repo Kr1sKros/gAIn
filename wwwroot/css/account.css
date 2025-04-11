@@ -1,0 +1,210 @@
+/* Apply a normal font globally */
+body {
+    font-family: Arial, sans-serif; /* Use a normal font for all text */
+    background-color: #0d1117;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Styling for the register container */
+.register-container {
+    background-color: #161b22;
+    border-radius: 10px;
+    padding: 1.5rem 2rem;
+    width: 360px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+/* Logo styling for gAIn */
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #ffffff; /* Default white color */
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: none; /* Removes the underline */
+    transition: color 0.3s; /* Smooth hover transition */
+}
+
+.logo:hover {
+    color: #34d399; /* Green color on hover */
+}
+
+
+/* Google login button */
+.google-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    color: #000000;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+.google-login img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.google-login:hover {
+    background-color: #f1f1f1;
+}
+
+/* Divider styles */
+.or-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+    color: #cccccc;
+    position: relative;
+}
+
+
+.line-divider {
+    height: 1px;
+    background-color: #cccccc; /* Light gray color for the line */
+    border: none;
+    margin: 1rem 0; /* Adjust spacing above and below the line */
+}
+
+.or-divider::before,
+.or-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: #cccccc;
+    margin: 0 10px;
+}
+
+/* Form styles */
+form {
+    margin-top: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    background-color: #0d1117;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+input::placeholder {
+    color: #777777;
+}
+
+/* Submit button styles */
+.btn-submit {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #34d399;
+    border: none;
+    border-radius: 5px;
+    color: #000000;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #3be68b;
+}
+
+/* Terms of Service and Already have an account links */
+.tos,
+.already {
+    font-size: 0.85rem;
+    color: #cccccc;
+    margin-top: 1rem;
+}
+
+.tos a,
+.already a {
+    color: #34d399;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.tos a:hover,
+.already a:hover {
+    color: #3be68b;
+}
+
+
+
+/* Checkbox styling */
+.checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.checkbox input[type="checkbox"] {
+    appearance: none; /* Remove default checkbox styling */
+    width: 20px;
+    height: 20px;
+    border: 2px solid #34d399; /* Green border */
+    border-radius: 4px; /* Rounded corners */
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.checkbox input[type="checkbox"]:checked {
+    background-color: #34d399; /* Green background when checked */
+    border-color: #34d399;
+    position: relative;
+}
+
+.checkbox input[type="checkbox"]:checked::after {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 12px;
+    border: solid #000000; /* Black checkmark */
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 2px;
+    left: 5px;
+}
+
+.checkbox label {
+    margin-left: 10px; /* Add space between the checkbox and text */
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.checkbox label:hover {
+    color: #34d399; /* Highlight text on hover */
+}

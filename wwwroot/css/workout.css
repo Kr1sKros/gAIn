@@ -1,0 +1,157 @@
+body {
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #C5C6C7;
+    background: radial-gradient(
+            circle at bottom right,
+            #1f6b52 10%,    /* Very dark green */
+            #014d39 25%,    /* Darker medium green */
+            #01362a 40%,    /* Dark transition green */
+            #011b16 60%,    /* Extremely dark green */
+            #031316 80%     /* Dark base color */
+    );
+}
+
+/* Flex container for main content */
+.main-container {
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 50px); /* Adjust for navbar height */
+}
+
+/* Left Panel: Exercise List */
+.exercise-list {
+    flex: 1;
+    padding: 20px;
+    border-right: 2px solid #C5C6C7;
+    overflow-y: auto;
+}
+
+.exercise-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.exercise-list li {
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+    border: 1px solid #66fcb6;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.exercise-list li.active {
+    background-color: #66fcb6;
+    color: white;
+    font-weight: bold;
+}
+
+.exercise-list li:hover {
+    background-color: #4ec18b;
+    border: 1px solid #4ec18b;
+}
+
+/* Right Panel: Exercise Details */
+.exercise-details {
+    flex: 3;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.exercise-header {
+    margin-bottom: 20px;
+}
+
+.exercise-header h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.exercise-description {
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.video-container {
+    flex: 1;
+    background-color: #031316;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    height: 300px;
+}
+
+/* Progress Bar */
+.progress-container {
+    margin-top: 20px;
+    background-color: #031316;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 20px;
+    background-color: #4caf50;
+    width: 0%;
+    transition: width 0.1s ease-in-out;
+}
+
+.progress-bar {
+    height: 20px;
+    width: 0%;
+    transition: width 0.1s ease-in-out;
+}
+
+.red-bar {
+    background-color: #b71c1c; /* Red for preparation */
+}
+
+.green-bar {
+    background-color: #1f6b52; /* Green for exercise */
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 20px;
+}
+
+.controls button {
+    background-color: #66fcb6;
+    color: #000;
+    font-size: 1rem;
+    text-transform: uppercase;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+
+.controls button:hover {
+    background-color: #4ddb98;
+}
+
+.finishBtn {
+    background-color: #66fcb6;
+    color: #000;
+    font-size: 1rem;
+    text-transform: uppercase;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+
+.finishBtn:hover {
+    background-color: #4ddb98;
+}

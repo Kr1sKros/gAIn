@@ -1,0 +1,241 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: #fff;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: #fff;
+    background: url('../images/background.gif') no-repeat center center fixed;
+    background-size: cover;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1; 
+}
+
+body * {
+    position: relative;
+    z-index: 1;
+}
+
+.title-section {
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.title-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.heading {
+    font-size: 8rem;
+    color: #66fcb6;
+    font-style: oblique; /* Use oblique if italic is unsupported */
+    letter-spacing: 0.1rem;
+    margin: 0;
+}
+
+
+
+.undertext {
+    font-size: 2rem;
+    color: #C5C6C7;
+    margin-top: 1rem; 
+    max-width: 700px;
+    line-height: 1.4;
+}
+
+.title-buttons {
+    margin-top: 2rem; 
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid #66fcb6;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+.btn-login {
+    background: transparent;
+}
+
+.btn-register {
+    background: #66fcb6;
+    color: #000;
+}
+
+.btn:hover {
+    background: #66fcb6;
+    color: #000;
+}
+
+.content {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2rem 0;
+    margin: 30vh 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;  
+    padding: 0 1rem; 
+}
+
+.content + .content {
+    margin-top: 4rem;
+}
+
+.content h2 {
+    margin-top: 0;
+    color: #f0f0f0;
+}
+
+.content p {
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 100%;
+    padding: 0;
+}
+
+/* Container for the button and the layers */
+.signup-button-container {
+    position: relative;
+    display: inline-block;
+    width: 300px; /* Width to fit the button and layers */
+    height: 70px; /* Height to fit the button and layers */
+}
+
+/* Background layer (static, fully colored) */
+.button-background {
+    position: absolute;
+    top: 6px; /* Slightly offset down */
+    left: 6px; /* Slightly offset right */
+    width: 300px; /* Match button width */
+    height: 70px; /* Match button height */
+    background-color: #66fcb6; /* Background color */
+    border-radius: 10px; /* Rounded corners */
+    z-index: 0; /* Behind everything */
+}
+
+/* Smaller centered overlay */
+.button-overlay {
+    position: absolute;
+    top: calc(6px + 1.5px); /* Centered with 1.5px offset for height */
+    left: calc(6px + 1.5px); /* Centered with 1.5px offset for width */
+    width: calc(300px - 3px); /* 3px smaller in width */
+    height: calc(70px - 3px); /* 3px smaller in height */
+    background-color: #161b22; /* Overlay color */
+    border-radius: 9px; /* Slightly smaller rounded corners to match */
+    z-index: 0.5; /* Between the background and the button */
+}
+
+/* Button (interactive, moves on hover) */
+.signup-button {
+    position: absolute;
+    top: 0; /* Start aligned with the container */
+    left: 0; /* Start aligned with the container */
+    width: 300px; /* Match background width */
+    height: 70px; /* Match background height */
+    background-color: #66fcb6; /* Button color */
+    color: black; /* Text color */
+    font-size: 24px; /* Large font size for readability */
+    border: none; /* No border */
+    border-radius: 10px; /* Rounded corners */
+    text-align: center;
+    line-height: 70px; /* Match button height for vertical centering */
+    cursor: pointer;
+    z-index: 1; /* Above the overlay and background */
+    transition: transform 0.15s ease-in-out; /* Smooth movement */
+    text-decoration: none; /* Remove underline for links */
+}
+
+/* Remove hover underline and retain text color */
+.signup-button:hover {
+    transform: translate(6px, 6px); /* Move to match the background layer's position */
+    color: black; /* Ensure the text color remains black */
+    text-decoration: none; /* Prevent underline */
+}
+
+/* General styles for anchor tags within the button */
+.signup-button a {
+    color: black; /* Ensure text remains black */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Ensure the anchor behaves like a button */
+    width: 100%; /* Anchor spans full width of the button */
+    height: 100%; /* Anchor spans full height of the button */
+    text-align: center;
+    line-height: 70px; /* Vertically center text */
+}
+
+
+.stats-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.stat-card {
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #66fcb6;
+    border-radius: 10px;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 250px;
+    color: #fff;
+}
+
+.stat-card h2 {
+    font-size: 1.5rem;
+    margin: 0 0 1rem;
+    color: #66fcb6;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+.stat-card p {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    color: #fff;
+    font-weight: bold;
+}

@@ -1,0 +1,41 @@
+.stats-row {
+    display: flex;
+    justify-content: space-around; /* Ensure even spacing around the cards */
+    align-items: center;
+    gap: 20px; /* Add horizontal space between cards */
+    margin-top: 20px;
+    width: 100%; /* Allow the stats-row to stretch across the container */
+}
+
+.stat-card {
+    text-align: center;
+    background-color: #151515; /* Dark theme for cards */
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 400px; /* Double the width of standard cards */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card.streak {
+    min-width: 300px; /* Twice the width of other cards for the streak div */
+}
+
+.stat-card h2 {
+    margin: 0;
+    color: #ffffff; /* White text for headings */
+    font-size: 1.2rem;
+}
+
+.stat-card p {
+    font-size: 1.5rem;
+    color: #ffffff; /* White text for stats */
+    display: flex; /* Flexbox for horizontal alignment */
+    align-items: center; /* Vertically center items */
+    justify-content: center; /* Center content horizontally */
+    gap: 10px; /* Add spacing between the GIF and text */
+}
+
+.stat-card img {
+    width: 50px; /* Adjust the size of the GIF */
+    height: 50px;
+}

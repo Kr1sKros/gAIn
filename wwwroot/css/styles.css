@@ -1,0 +1,48 @@
+/* Navbar styling */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.4) !important; /* Black with slight transparency */
+    color: #ffffff !important; /* White text */
+}
+
+/* Navbar links */
+.navbar .nav-link {
+    color: #ffffff !important; /* Default white text */
+    font-size: 1.2rem; /* Bigger text for links */
+    font-weight: 500; /* Medium weight */
+    text-decoration: none !important; /* Remove underline */
+    transition: opacity 0.3s ease, color 0.3s ease; /* Smooth hover transition */
+    opacity: 1; /* Fully visible by default */
+}
+
+/* Dim non-hovered items */
+.navbar .nav-link:hover {
+    color: #34d399 !important; /* Green hover color */
+    opacity: 1; /* Fully visible on hover */
+}
+
+/* Dim all other links when one is hovered */
+.navbar:hover .nav-link {
+    opacity: 0.5; /* Dim other links */
+}
+
+/* Ensure hovered link remains bright */
+.navbar:hover .nav-link:hover {
+    opacity: 1 !important; /* Fully visible on hover */
+}
+
+/* Navbar brand ("gAIn") styling */
+.navbar .navbar-brand {
+    font-family: 'Orbitron', sans-serif; /* Orbitron font for "gAIn" */
+    color: #34d399 !important; /* Green color for the brand */
+    font-size: 1.8rem; /* Slightly larger font for emphasis */
+    font-style: italic; /* Italicized text */
+    font-weight: bold; /* Bold for emphasis */
+    text-decoration: none !important; /* Remove underline */
+    transition: color 0.3s ease; /* Smooth hover transition */
+}
+
+/* Hover effect for "gAIn" */
+.navbar .navbar-brand:hover {
+    color: #34d399 !important; /* Keep green color on hover */
+}
+

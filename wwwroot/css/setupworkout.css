@@ -1,0 +1,104 @@
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(
+            circle at bottom right,
+            #1f6b52 10%,    /* Very dark green */
+            #014d39 25%,    /* Darker medium green */
+            #01362a 40%,    /* Dark transition green */
+            #011b16 60%,    /* Extremely dark green */
+            #031316 80%     /* Dark base color */
+    );
+    margin: 0;        /* Remove default margin */
+    height: 100vh;    /* Ensure the body takes full viewport height */
+}
+
+.title {
+    color: #66fcb6;
+}
+
+.selection-text {
+    color: #C5C6C7;
+}
+
+.durationButtons {
+    display: flex;
+    gap: 1rem; /* Spacing between buttons */
+    margin-top: 2rem;
+}
+
+.durationButtons label {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid #66fcb6;
+    border-radius: 5px;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.3s, color 0.3s;
+    text-align: center;
+}
+
+/* Hide the default radio button */
+.durationButtons input[type="radio"] {
+    display: none;
+}
+
+/* Selected state for the label */
+.durationButtons input[type="radio"]:checked + label,
+.durationButtons label:has(input[type="radio"]:checked) {
+    background: #66fcb6;
+    color: #000;
+}
+
+/* Hover effect 
+.durationButtons label:hover {
+    background: #66fcb6;
+    color: #000;
+}
+*/
+
+/* Add vertical spacing between sections */
+h1.title {
+    margin-bottom: 2rem; /* Space below the title */
+}
+
+.selection-text {
+    margin-top: 2rem;    /* Space above the selection text */
+    margin-bottom: 1rem; /* Space below the selection text */
+}
+
+.durationButtons {
+    gap: 1rem;           /* Maintain gap between buttons */
+    margin-bottom: 3rem; /* Add space below the duration buttons */
+}
+
+.col-sm {
+    margin-bottom: 3rem; /* Add space below the equipment selection */
+}
+
+/* Equipment buttons container */
+.equipment {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;           /* Increase gap between equipment items */
+}
+
+.generateWorkout {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    background: #66fcb6;
+    color: #000;
+    text-decoration: none;
+    border: 2px solid #66fcb6;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}

@@ -1,0 +1,148 @@
+/* Style for the workout section container */
+.workout-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.58);
+    padding: 20px 0;
+    width: 100vw;
+    margin: 50px 0;
+}
+
+/* Style for the content within the workout section */
+.workout-content {
+    display: flex;
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+/* Style for the text content */
+.text-content {
+    flex: 1;
+    margin-left: -200px;
+    margin-right: 20px;
+    max-width: 45%;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    word-wrap: break-word;
+}
+
+.text-content h2 {
+    font-size: 2rem;
+}
+
+.text-content p {
+    margin: 10px 0;
+}
+
+/* Style for the image content */
+.image-content {
+    position: absolute;
+    right: 0;
+    top: -110px; /* Moves the image higher */
+    bottom: -100px; /* Extends the image lower */
+    height: auto;
+    width: 70%;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden; /* Ensures the image edges are not clipped */
+}
+
+.image-content img {
+    height: 120%; /* Makes the image taller */
+    width: auto;
+    border-radius: 20px; /* Applies rounded edges to the image */
+    object-fit: cover; /* Ensures proper scaling and proportions */
+}
+
+
+
+/* Streak Section Styles */
+
+/* Ensure the streak section takes full width and has padding */
+.workout-section.streak {
+    width: 100%;
+    padding: 40px 20px; /* Increased padding for better spacing */
+    box-sizing: border-box; /* Include padding in width calculations */
+    background-color: rgba(0, 0, 0, 0.58);    display: flex; /* Ensure it behaves as a flex container */
+    justify-content: center; /* Center content horizontally */
+}
+
+/* Flex container for content alignment */
+.workout-section.streak .workout-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px; /* Space between items */
+    max-width: 1200px; /* Optional: Limit max width for better readability */
+    margin: 0 auto; /* Center the container */
+}
+
+/* Override for Streak Section Image Content */
+.workout-section.streak .image-content {
+    position: static; /* Remove absolute positioning */
+    margin: 0; /* Reset margins */
+    width: 200px; /* Ensure fixed width */
+    top: auto; /* Reset top */
+    bottom: auto; /* Reset bottom */
+    display: flex; /* Ensure flex display */
+    justify-content: center; /* Center image horizontally */
+    align-items: center; /* Center image vertically */
+}
+
+/* Images styling */
+.workout-section.streak .image-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    object-fit: contain;
+}
+
+/* Override for Streak Section Text Content */
+.workout-section.streak .text-content {
+    flex: 1; /* Take up remaining space */
+    margin-left: 0; /* Remove negative left margin */
+    margin-right: 0; /* Remove right margin */
+    max-width: 600px; /* Optional: Limit max width for better readability */
+    text-align: center; /* Center text */
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+    .workout-section.streak .workout-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .workout-section.streak .image-content {
+        max-width: 150px; /* Reduce image size on smaller screens */
+        width: 150px; /* Adjust width accordingly */
+    }
+
+    .workout-section.streak .text-content {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .workout-section.streak .image-content {
+        max-width: 120px; /* Further reduce image size */
+        width: 120px; /* Adjust width accordingly */
+    }
+
+    .workout-section.streak .text-content h2 {
+        font-size: 1.5em; /* Adjust heading size */
+    }
+
+    .workout-section.streak .text-content p {
+        font-size: 1em; /* Adjust paragraph size */
+    }
+}
+
+
