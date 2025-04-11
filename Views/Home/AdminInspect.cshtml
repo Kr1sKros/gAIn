@@ -1,0 +1,49 @@
+@model AdminInspectViewModel
+
+@{
+    ViewData["Title"] = "AdminInspect";
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<style>
+    footer{
+        position: absolute !important;
+        bottom: 999vh !important;
+    }
+</style>
+<body>
+<div class="row">
+    <div class="col">
+        <table class="table table-dark">
+
+            @foreach (var ses in Model.Sessions)
+            {
+                <tr>
+                    <th></th>
+                    <th>Start Time</th>
+                    <th>Duration</th>
+                </tr>
+                <partial name="_TrainingSessionPartial" model="@ses"/>
+                <tr><th colspan="3" style="background-color: #5b5c5e"></th></tr>
+            }
+
+        </table>
+    </div>
+    
+    <div class="col">
+        <form method="post">
+            <partial name="_EquipmentCheckboxPartial" model="Model"/> 
+            <br/>
+            <button type="submit" class="btn-default">Update</button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

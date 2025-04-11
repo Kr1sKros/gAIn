@@ -1,0 +1,53 @@
+@model EquipmentCheckboxPartialModel
+@{
+    ViewData["Title"] = "Setup Workout";
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Setup Workout</title>
+    <meta charset="UTF-8"></meta>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/setupworkout.css"></link>
+</head>
+<body>
+<h1 class="title">Select time and equipment</h1>
+<form asp-action="GenerateWorkout" method="post">
+    <p class="selection-text">Choose your workout duration:</p>
+    <div class="durationButtons">
+        <label>
+            <input type="radio" name="Duration" value="5" required />
+            5 Minutes
+        </label>
+        <label>
+            <input type="radio" name="Duration" value="10" />
+            10 Minutes
+        </label>
+        <label>
+            <input type="radio" name="Duration" value="15" />
+            15 Minutes
+        </label>
+        <label>
+            <input type="radio" name="Duration" value="30" />
+            30 Minutes
+        </label>
+    </div>
+    <p class="selection-text">Choose your equipment:</p>
+    <div class="col-sm">
+        <partial name="_EquipmentCheckboxPartial" model="Model"/>
+    </div>
+    
+    <button class="generateWorkout" type="submit">Generate Workout</button>
+</form>
+
+@if (ViewBag.Response != null)
+{
+<div class="mt-4">
+    <h3>Generated Workout:</h3>
+    <p>@ViewBag.Response</p>
+</div>
+}
+</body>
+</html>

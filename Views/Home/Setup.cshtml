@@ -1,0 +1,63 @@
+@model SetupViewModel
+
+@{
+    ViewData["Title"] = "Setup";
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+<br/>
+<form method="post" class="form-control gain-bg">
+    <div class="row">
+
+        <div class="col-sm">
+            <div class="form-floating mb-3">
+                <input asp-for="DateOfBirth" id="dateOfBirth" class="form-control" value=""/>
+                <label asp-for="DateOfBirth" class="form-label">Date of Birth</label>
+                <span asp-validation-for="DateOfBirth" style="color: red"></span>
+            </div>
+            <br/>
+            <div class="form-floating mb-3">
+                <select asp-for="FitnessLevel" name="fitnessLevel" id="fitnessLevel" class="form-control">
+                    <option value="" selected disabled="disabled">--Please select an option--</option>
+                    <option value="1">Noob</option>
+                    <option value="2">Mid</option>
+                    <option value="3">Pro</option>
+                    <option value="4">Hacker</option>
+                    <option value="5">God</option>
+
+                </select>
+                <label asp-for="FitnessLevel" class="form-label">Choose your estimated fitness level</label>
+                <span asp-validation-for="FitnessLevel" style="color: red"></span>
+            </div>
+
+            <br/> <br/>
+            <button type="submit" class="btn-default">Next</button>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-sm">
+
+            <span style="color: whitesmoke">
+                <h3>Select all the equipments you have available</h3></span>
+            <partial name="_EquipmentCheckboxPartial" model="Model"/>
+
+        </div>
+
+
+    </div>
+
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+@{
+    Layout = "~/Views/Shared/_WorkoutLayout.cshtml";
+}
+
+<html>
+<head>
+    <title>Feedback</title>
+    <meta charset="UTF-8"></meta>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/feedback.css"></link>
+</head>
+<body>
+<h1 class="title">How did this workout feel?</h1>
+<form asp-action="AdjustSkillLevel" method="post">
+    <p>We will adjust your physical fitness level based on your answer.</p>
+    <div class="feedback">
+        <input type="radio" name="adjustment" value="-2" id="VeryHard"></input>
+        <label for="VeryHard" class="feedback-button">
+            <span class="feedback-text">Way too hard!</span>
+        </label>
+
+        <input type="radio" name="adjustment" value="-1" id="Hard"></input>
+        <label for="Hard" class="feedback-button">
+            <span class="feedback-text">Posed a bit of a challange...</span>
+        </label>
+
+        <input type="radio" name="adjustment" value="0" id="Normal"></input>
+        <label for="Normal" class="feedback-button">
+            <span class="feedback-text">Not more than I could handle.</span>
+        </label>
+
+        <input type="radio" name="adjustment" value="1" id="Easy"></input>
+        <label for="Easy" class="feedback-button">
+            <span class="feedback-text">Didn't even break a sweat!</span>
+        </label>
+
+        <input type="radio" name="adjustment" value="2" id="VeryEasy"></input>
+        <label for="VeryEasy" class="feedback-button">
+            <span class="feedback-text">I could do this while sleeping...</span>
+        </label>
+    </div>
+    
+    <button type="submit" class="submit">Submit</button>
+</form>
+</body>
+</html>

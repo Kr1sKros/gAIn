@@ -1,0 +1,62 @@
+.equipment {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem; /* Increase the gap between each equipment button */
+    justify-content: flex-start; /* Center the items within the container */
+}
+
+/* Hide the default checkbox */
+.equipment input[type="checkbox"] {
+    display: none;
+}
+
+/* Style the label to look like a button */
+.equipment-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;       /* Slightly increase the width */
+    height: 180px;      /* Slightly increase the height */
+    padding: 1rem;
+    border: 2px solid #66fcb6;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    background: transparent;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Image styling */
+.equipment-button img {
+    width: 90px;        /* Slightly increase the image size */
+    height: 90px;
+    object-fit: contain;
+    margin-bottom: 1rem; /* Add more space between the image and text */
+}
+
+/* Name styling */
+.equipment-name {
+    font-size: 0.85rem;       /* Slightly reduce the font size */
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    /*word-wrap: break-word;*/    /*Ensure long words wrap to the next line */
+    max-width: 100%;          /* Prevent overflow */
+    line-height: 1.1;         /* Adjust line height for better text fit */
+    margin-top: auto;         /* Push text to the bottom if necessary */
+}
+
+/* Hover effect
+.equipment-button:hover {
+    background: #66fcb6;
+    color: #000;
+}
+*/
+
+/* Checked state */
+.equipment input[type="checkbox"]:checked + .equipment-button {
+    background: #66fcb6;
+    color: #000;
+}

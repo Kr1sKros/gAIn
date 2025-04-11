@@ -1,0 +1,52 @@
+@model ApplicationUser
+
+<td>
+    @Model.Id
+    <input type="hidden" value="@Model.Id" name="Id" readonly="readonly"/>
+</td>
+<td>
+    <input asp-for="Email" value="@Model.Email"/><br/>
+    <span asp-validation-for="Email"></span>
+</td>
+<td>
+
+    <input asp-for="EmailConfirmed" /><br/>
+    <span asp-validation-for="EmailConfirmed"></span>
+</td>
+<td>
+    <input asp-for="TwoFactorEnabled" /><br/>
+    <span asp-validation-for="TwoFactorEnabled"></span>
+</td>
+<td>
+    <input asp-for="Nickname" size="15em"/><br/>
+    <span asp-validation-for="Nickname"></span>
+</td>
+<td>
+    <input asp-for="DateOfBirth" /><br/>
+    <span asp-validation-for="DateOfBirth"></span>
+</td>
+<td>
+    <input asp-for="FitnessLevel"  size="1em"/><br/>
+    <span asp-validation-for="FitnessLevel"></span>
+</td>
+<td>
+    <input asp-for="SetupCompleted" /><br/>
+    <span asp-validation-for="SetupCompleted"></span>
+</td>
+<td>
+    <input asp-for="TotalAmountExercise" size="10em"/><br/>
+    <span asp-validation-for="TotalAmountExercise"></span>
+</td>
+<td>
+    <input asp-for="WeeklyExercise" size="4em"/><br/>
+    <span asp-validation-for="WeeklyExercise"></span>
+</td>
+<td>
+    <input asp-for="DailyStreak" size="10em"/><br/>
+    <span asp-validation-for="DailyStreak"></span>
+</td>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

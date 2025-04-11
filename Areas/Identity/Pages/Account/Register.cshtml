@@ -1,0 +1,61 @@
+﻿@page
+@model RegisterModel
+@{
+Layout = null;
+ViewData["Title"] = "Register";
+}
+
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/account.css" />
+<link rel="icon" type="image/png" href="~/favicon.png">
+
+<div class="register-container">
+    <a href="/" class="logo">gAIn</a> 
+    <div class="external-login">
+        @if ((Model.ExternalLogins?.Count ?? 0) == 0)
+        {
+        <p>There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article</a> for setting up external services.</p>
+        }
+        else
+        {
+        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            @foreach (var provider in Model.ExternalLogins!)
+            {
+            <button type="submit" class="google-login" name="provider" value="@provider.Name">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" />
+                Sign in with @provider.DisplayName
+            </button>
+            }
+        </form>
+        }
+    </div>
+    <div class="or-divider"><span>OR</span></div>
+    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger validation-summary" role="alert"></div>
+        <div class="form-group">
+            <input asp-for="Input.Nickname" class="form-control" autocomplete="nickname" placeholder="Username" />
+            <span asp-validation-for="Input.Nickname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input asp-for="Input.Email" class="form-control" autocomplete="email" placeholder="Email" />
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input asp-for="Input.Password" class="form-control" autocomplete="new-password" type="password" placeholder="Password" />
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" type="password" placeholder="Confirm Password" />
+            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+        </div>
+        <button id="registerSubmit" type="submit" class="btn-submit">Sign up</button>
+    </form>
+    <p class="tos">
+        By signing up, you agree to our <a href="/Home/Terms">Terms of Service</a> and <a href="/Home/Privacy">Privacy Policy</a>.
+
+    </p>
+    <div class="line-divider"><span></span></div>
+    <p class="already">
+        Already have an account? <a href="/Identity/Account/Login">Log in</a>
+    </p>
+</div>

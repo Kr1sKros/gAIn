@@ -1,0 +1,86 @@
+@model IEnumerable<ApplicationUser>
+
+@{
+    ViewData["Title"] = "Admin";
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>title</title>
+</head>
+<style>
+    footer{
+        position: absolute !important;
+        bottom: 999vh !important;
+    }
+</style>
+<body>
+<div style="display: flex; justify-content: center; padding: 10px;">
+    <table class="table table-dark" style="text-align: center">
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Email Confirmed</th>
+            <th>2FA Enabled</th>
+            <th>Nickname</th>
+            <th>Date of Birth</th>
+            <th>Fitness Level</th>
+            <th>Setup Completed</th>
+            <th>Total Amount of Exercise</th>
+            <th>WeeklyExercise</th>
+            <th>Daily Streak</th>
+            <th>Update</th>
+            <th>Workouts & Equipments</th>
+            <th>Delete User</th>
+        </tr>
+
+        @foreach (var user in Model)
+        {
+            <tr>
+                <form method="post">
+                    <input type="hidden" name="action" value="null"/>
+                    <partial name="_UserTablePartial" model="user"/>
+                    <td>
+                        <button type="submit" class="btn-default">Update</button>
+                    </td>
+                </form>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="uId" value="@user.Id"/>
+                        <input type="hidden" name="action" value="view"/>
+                        <button type="submit" class="btn-default">View</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="uId" value="@user.Id"/>
+                        <input type="hidden" name="action" value="delete"/>
+                        <button type="submit" class="btn btn-danger btn-delete" id="btn-delete">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+<script>
+    
+    let buttons = document.querySelectorAll(".btn-delete");
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            return confirm("Are you sure you want to delete this user?\n" +
+                "This action cannot be undone!");
+        });
+    });
+
+</script>
+</html>

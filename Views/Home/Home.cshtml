@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GAIN - Home</title>
+    <link rel="stylesheet" href="/css/welcome.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/stat.css">
+</head>
+<body>
+<div class="container">
+    <div class="workout-section workouttime">
+        <div class="workout-content">
+            <div class="text-content">
+                <br/>
+                <h1 class="gain-color">Welcome Back, @ViewBag.Nickname</h1>
+                <br>
+                <div class="stats-row">
+                    <!-- Total Workout -->
+                    <div class="stat-card">
+                        <h2>Total Workout</h2>
+                        <p><span class="stat-value">@ViewBag.TotalAmountExercise </span> minutes</p>
+                    </div>
+                    <!-- Weekly Workout -->
+                    <div class="stat-card">
+                        <h2>Weekly Workout</h2>
+                        <p><span class="stat-value">@ViewBag.WeeklyExercise</span> minutes</p>
+                    </div>
+                    <!-- Streak -->
+                    <div class="stat-card streak">
+                        <h2>Streak</h2>
+                        <p>
+                            <img src="/images/streak.gif" alt="Streak Animation">
+                            <span class="stat-value">@ViewBag.DailyStreak</span> days
+                        </p>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="stats-section">
+                    <h2>Your Weekly Stats</h2>
+                    <p>Great job staying consistent! Keep it up to reach your goals.</p>
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="title-section" style="margin-top: -350px; text-align: center; margin-left: -1200px;">
+    <div class="title-content">
+        <div class="signup-button-container">
+            <div class="button-background"></div>
+            <div class="button-overlay"></div>
+            <a class="signup-button" href="/workout/setupworkout">Start Workout</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

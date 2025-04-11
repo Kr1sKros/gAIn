@@ -1,0 +1,16 @@
+@model TrainingSession
+
+<tr>
+    <td></td>
+    <td>@Model.SessionStartTime</td>
+    <td>@Model.Duration</td>
+</tr>
+<tr>
+    <th>Exercises</th>
+    <td colspan="2">
+        @foreach (var i in Model.SessionExercises)
+        {
+            @i @: , 
+        }
+    </td>
+</tr>

@@ -1,0 +1,20 @@
+@model EquipmentCheckboxPartialModel
+
+<div class="equipment">
+    @foreach (var equipment in Model.Equipments)
+    {
+        <input type="checkbox" name="EquipmentId" value="@equipment.Id" id="equipment_@equipment.Id"
+               @(Model.EquipmentId.Contains(equipment.Id) ? "checked" : "") />
+        <label for="equipment_@equipment.Id" class="equipment-button">
+            <img src="@equipment.ImagePath" alt="@equipment.Name" />
+            <span class="equipment-name">@equipment.Name</span>
+        </label>
+    }
+</div>
+
+<script>
+    @foreach (var eqId in Model.EquipmentId)
+    {
+        @: document.getElementById("equipment_@eqId").checked = true;
+    }
+</script>

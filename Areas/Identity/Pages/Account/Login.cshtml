@@ -1,0 +1,58 @@
+﻿@page
+@model LoginModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Log in";
+}
+
+<link rel="stylesheet" href="/css/account.css" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/png" href="~/favicon.png">
+
+<div class="register-container">
+    <a href="/" class="logo">gAIn</a>
+    <form id="account" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger validation-summary" role="alert"></div>
+        <div class="form-group">
+            <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="Email"/>
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input asp-for="Input.Password" class="form-control" autocomplete="current-password" type="password" placeholder="Password"/>
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox" id="remember-me" asp-for="Input.RememberMe"/>
+            <label for="remember-me">Remember me?</label>
+        </div>
+        <button id="login-submit" type="submit" class="btn-submit">Log in</button>
+        <p class="tos">
+            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+        </p>
+        <p class="already">
+            Don't have an account? <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register here</a>
+        </p>
+        <p class="tos">
+            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+        </p>
+    </form>
+    <hr class="line-divider"/>
+    <div class="external-login">
+        @if ((Model.ExternalLogins?.Count ?? 0) == 0)
+        {
+            <p class="text-danger">There are no external authentication services configured.</p>
+        }
+        else
+        {
+            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                @foreach (var provider in Model.ExternalLogins!)
+                {
+                    <button type="submit" class="google-login" name="provider" value="@provider.Name">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="@provider.DisplayName"/>
+                        Log in with @provider.DisplayName
+                    </button>
+                }
+            </form>
+        }
+    </div>
+</div>

@@ -1,0 +1,203 @@
+@model List<gain.Models.Exercise>
+
+@{
+    Layout = "~/Views/Shared/_WorkoutLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Workout</title>
+        <meta charset="UTF-8"></meta>
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/css/workout.css"></link>
+        
+    </head>
+<body>
+<!-- Main content container -->
+<div class="main-container">
+    <!-- Left Panel: Exercise List -->
+    <div class="exercise-list">
+        <ul>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <li>@(i+1): @Model[i].Name</li>
+            }
+        </ul>
+    </div>
+
+    <!-- Right Panel: Exercise Details -->
+    <div class="exercise-details">
+        <div class="exercise-header">
+            <h2 id="exerciseName">Loading...</h2>
+        </div>
+        <div class="exercise-description">
+            <p id="exerciseDescription"></p>
+            <p><strong>Equipment:</strong> <span id="equipment"></span></p>
+            <p><strong>Primary Muscle Group:</strong> <span id="primaryMuscle"></span></p>
+            <p><strong>Secondary Muscle Group:</strong> <span id="secondaryMuscle"></span></p>
+        </div>
+        <div class="video-container" id="ExerciseVideo">
+            @* <img id="ExerciseVideo" src=""/> *@
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <p><strong>Time remaining:</strong> <span id="remainingTime">0 seconds</span></p>
+        <div class="controls">
+            <button id="pauseButton" onclick="togglePause()">Pause</button>
+        </div>
+        <form id="completionForm" asp-action="LogSession" method="post" style="display: none; margin-top: 20px;">
+            <input type="hidden" name="duration" id="duration"></input>
+            <input type="hidden" name="exerciseData" id="exerciseData">
+            <button type="submit" class="finishBtn" style=" background-color: #66fcb6;
+                                                                color: #000;
+                                                                font-size: 1rem;
+                                                                text-transform: uppercase;
+                                                                padding: 0.8rem 1.5rem;
+                                                                border: none;
+                                                                border-radius: 10px;
+                                                                cursor: pointer;
+                                                                transition: background 0.3s, color 0.3s;">
+                Finish Workout
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+    <script>
+        let exerciseIndex = 0; // Current exercise index
+        let exercises = @Html.Raw(Json.Serialize(Model)); // Serialize exercises to JSON
+        let totalDuration = @ViewBag.Duration * 60; // Convert minutes to seconds
+        let exerciseTime = (totalDuration / exercises.length) * 0.75; // Exercise time (3/4)
+        let prepTime = (totalDuration / exercises.length) * 0.25; // Preparation time (1/4)
+        let totalTimeForExercise = exerciseTime + prepTime; // Total time per exercise
+        let paused = false;
+    
+        function updateExerciseList() {
+            const listItems = document.querySelectorAll(".exercise-list li");
+            listItems.forEach((item, index) => {
+                item.classList.remove("active");
+                if (index === exerciseIndex) {
+                    item.classList.add("active");
+                }
+            });
+        }
+    
+        function showExercise(index) {
+            if (index < exercises.length) {
+                exerciseIndex = index;
+    
+                // Update the exercise list highlighting
+                updateExerciseList();
+    
+                // Update exercise information
+                const exercise = exercises[index];
+                document.getElementById("exerciseName").innerText = exercise.name;
+                document.getElementById("exerciseDescription").innerText = exercise.description;
+                document.getElementById("primaryMuscle").innerText = exercise.primary_Musclegroup;
+                document.getElementById("secondaryMuscle").innerText = exercise.secondary_Musclegroup || "None";
+                document.getElementById("equipment").innerText = exercise.equipment || "No equipment needed";
+                let video = document.getElementById("ExerciseVideo");
+                video.style.backgroundImage = `url(${exercise.videoAdress})`;
+                video.style.backgroundSize = 'contain';
+                video.style.backgroundRepeat = 'no-repeat'; // Prevent tiling
+                video.style.backgroundPosition = 'center';
+                document.getElementById("progressBar").style.width = "0%"; // Reset progress bar
+    
+                // Start preparation phase
+                let remainingPrepTime = prepTime;
+                document.getElementById("progressBar").classList.add("red-bar"); // Set red color for preparation
+                let intervalTime = 100; // Update every 100ms
+                let progressIncrementPrep = (intervalTime / (prepTime * 1000)) * 100;
+    
+                const prepInterval = setInterval(() => {
+                    if (!paused) {
+                        remainingPrepTime -= intervalTime / 1000; // Subtract intervalTime in seconds
+    
+                        // Update progress bar smoothly
+                        let progress = ((prepTime - remainingPrepTime) / prepTime) * 100;
+                        document.getElementById("progressBar").style.width = progress + "%";
+    
+                        // Update remaining time text
+                        document.getElementById("remainingTime").innerText = `Prepare for next exercise (${Math.ceil(remainingPrepTime)} seconds)`;
+    
+                        // When preparation phase ends, start exercise phase
+                        if (remainingPrepTime <= 0) {
+                            clearInterval(prepInterval);
+                            document.getElementById("progressBar").classList.remove("red-bar"); // Remove red color
+                            startExercisePhase(index);
+                        }
+                    }
+                }, intervalTime); // Update every 100ms
+            } else {
+                // Hide elements when workout is complete
+    
+                document.querySelector(".video-container").style.display = "none";
+                document.querySelector(".progress-container").style.display = "none";
+                document.querySelector(".controls").style.display = "none";
+                document.getElementById("remainingTime").parentElement.style.display = "none";
+                document.getElementById("equipment").parentElement.style.display = "none";
+                document.getElementById("primaryMuscle").parentElement.style.display = "none";
+                document.getElementById("secondaryMuscle").parentElement.style.display = "none";
+    
+                // Update the exercise header
+                document.getElementById("exerciseName").innerText = "Workout Complete!";
+                document.getElementById("exerciseDescription").innerText = "";
+    
+                // Show the form with a button
+                document.getElementById("completionForm").style.display = "block";
+                logSession();
+            }
+        }
+    
+        function startExercisePhase(index) {
+            // Start exercise phase
+            let remainingExerciseTime = exerciseTime;
+            document.getElementById("progressBar").classList.add("green-bar"); // Set green color for exercise
+    
+            const exerciseInterval = setInterval(() => {
+                if (!paused) {
+    
+    
+                    remainingExerciseTime -= 0.1; // Subtract 100ms in seconds
+    
+                    // Update progress bar smoothly
+                    let progress = ((exerciseTime - remainingExerciseTime) / exerciseTime) * 100;
+                    document.getElementById("progressBar").style.width = progress + "%";
+    
+                    // Update remaining time text
+                    document.getElementById("remainingTime").innerText = `Exercise time (${Math.ceil(remainingExerciseTime)} seconds)`;
+    
+                    // When exercise phase ends, move to next exercise
+                    if (remainingExerciseTime <= 0) {
+                        clearInterval(exerciseInterval);
+                        document.getElementById("progressBar").classList.remove("green-bar"); // Remove green color
+                        showExercise(index + 1);
+                    }
+                }
+            }, 100); // Update every 100ms
+        }
+    
+        function logSession() {
+            const exerciseData = JSON.stringify(exercises);
+    
+            document.getElementById("duration").value = @ViewBag.Duration;
+            document.getElementById("exerciseData").value = exerciseData;
+        }
+    
+        function togglePause() {
+            paused = !paused;
+            if (paused) {
+                document.getElementById("pauseButton").innerHTML = "Resume";
+            } else {
+                document.getElementById("pauseButton").innerHTML = "Pause";
+            }
+        }
+    
+        // Start the workout on page load
+        window.onload = () => {
+            showExercise(exerciseIndex);
+        };
+    </script>
+</html>

@@ -1,0 +1,50 @@
+@using Microsoft.EntityFrameworkCore
+@model List<Achievements>
+@{
+    ViewData["Title"] = "Achievements";
+    Layout = "_Layout";
+}
+
+@{
+    ViewData["Title"] = "Achievements";
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+    <link rel="stylesheet" href="/css/welcome.css">
+    <link rel="stylesheet" href="/css/home.css">
+
+
+</head>
+<body>
+
+
+
+
+<div class="workout-section workouttime">
+    <div class="workout-content">
+        <div class="text-content">
+            <br/>
+            <h2>Achievements</h2>
+            <div class="stats-container">
+                @{ int n = 0;}
+                @foreach (var i in Model)
+                {
+                int level = ViewBag.Achievementlevels[n];
+                <div class="Achievement-list">
+                    <h1>@i.Name</h1>
+                    <h2>Level @level</h2>
+                    <p>@i.Description</p>
+                </div>;
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
